@@ -8,9 +8,9 @@ Copyright © wkangk <wangkangchn@163.com>
 ***************************************************************/
 #include <iostream>
 
-int books{0};           /* 书本数 */
-int cats{0};            /* 猫猫数目 */
-int pages[1005]{0};     /* 书本页数 */
+int books       = 0;        /* 书本数 */
+int cats        = 0;        /* 猫猫数目 */
+int pages[1005] = {0};      /* 书本页数 */
 
 /**
  *     检查所有猫是否能在指定的抄写能力下, 完成所有书本的抄写
@@ -47,19 +47,44 @@ int check(int capacity)
     return 0;
 }
 
+
+int check2(int capacity)
+{
+    int cnt_cat             = 1;    /* 抄写书本的猫猫数目 */
+    int sum_page            = 0;    /* 已抄写的总页数 */
+    int current_book_idx    = 0;    /* 当前抄写数目的索引 */
+
+    while (cnt_cat <= cats) {        /* 一只猫一只猫的计算 */
+        if (current_book_idx >= books) {
+            return 1;
+        }
+
+        /* 当前猫还没有达到抄书的能力极限, 就可以继续抄书 */
+        if (sum_page + pages[current_book_idx] <= capacity) {
+            sum_page += pages[current_book_idx];
+            ++current_book_idx;
+        } else {
+            ++cnt_cat;
+            sum_page = 0;
+        }
+    }
+
+    return 0;
+}
+
+
 int main()
 {
     int T, x;
     std::cin >> books >> cats >> T;
 
-    std::cout << T << std::endl;
-
     for (int i = 0; i < books; i++) {
         std::cin >> pages[i];
     }
+
     while (T--) {
         std::cin >> x;
-        if (check(x)) {
+        if (check2(x)) {
             std::cout << "YES" << std::endl;
         } else {
             std::cout << "NO" << std::endl;
