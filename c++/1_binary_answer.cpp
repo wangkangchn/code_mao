@@ -19,7 +19,7 @@ int pages[1005] = {0};      /* 书本页数 */
  * @return      1:  可以完成
  *              0:  不可以完成
  */
-int check(int capacity)
+int check_2293_1(int capacity)
 {
     int cnt_cat     = 1;    /* 抄写书本的猫猫数目 */
     int sum_page    = 0;    /* 已抄写的总页数 */
@@ -48,7 +48,7 @@ int check(int capacity)
 }
 
 
-int check2(int capacity)
+int check_2293_2(int capacity)
 {
     int cnt_cat             = 1;    /* 抄写书本的猫猫数目 */
     int sum_page            = 0;    /* 已抄写的总页数 */
@@ -72,8 +72,8 @@ int check2(int capacity)
     return 0;
 }
 
-
-int main()
+/* OJ. 2293 抄的完吗? */
+int main_2293()
 {
     int T, x;
     std::cin >> books >> cats >> T;
@@ -84,12 +84,78 @@ int main()
 
     while (T--) {
         std::cin >> x;
-        if (check2(x)) {
+        if (check_2293_1(x)) {
             std::cout << "YES" << std::endl;
         } else {
             std::cout << "NO" << std::endl;
         }
     }
+
+    return 0;
+}
+
+
+/* OJ.2295 超多少页 */
+int main_2295()
+{
+    std::cin >> books >> cats;
+
+    int start = 0, end = 0;
+
+    for (int i = 0; i < books; i++) {
+        std::cin >> pages[i];
+
+        start = std::max(start, pages[i]);  /* 寻找包含最多书页的书作为枚举起点 */
+        end += pages[i];                    /* 总书页作为枚举终点 */
+    }
+
+    for (int x = start; x <= end; ++x) {
+        if (check_2293_1(x)) {
+            std::cout << x << std::endl;
+            break;                          /* 只要找到第一个能抄完的书页数, 猫猫就可以完成任务 */
+        }
+    }
+
+    return 0;
+}
+
+
+/* OJ.2297 编程猫抄书 */
+int main_2297()
+{
+    std::cin >> books >> cats;
+
+    int start = 0, end = 0;
+
+    for (int i = 0; i < books; i++) {
+        std::cin >> pages[i];
+
+        start = std::max(start, pages[i]);  /* 寻找包含最多书页的书作为枚举起点 */
+        end += pages[i];                    /* 总书页作为枚举终点 */
+    }
+
+    int res = 0;                            /* 答案 */
+    while (start <= end) {
+        int mid = (start + end) / 2;
+        if (check_2293_1(mid)) {            /* mid 可以完成抄书, 那可能还有更小值, 所以向左边继续搜索 */
+            res = mid;
+            end = mid - 1;
+        } else {                            /* mid 抄不完, 那就是说, 每只猫需要更强的抄书能力 */
+            start = mid + 1;
+        }
+    }
+
+    std::cout << res << std::endl;
+    return 0;
+}
+
+int main()
+{   
+    // main_2293();
+
+    // main_2295();
+    
+    main_2297();
 
     return 0;
 }
