@@ -6,6 +6,14 @@ Copyright © wkangk <wangkangchn@163.com>
 描述	   	: OJ. 2300 严厉的贡菊
 时间	   	: 2023-05-24 20:18
 ***************************************************************/
+
+/* 思路:
+    跳跃最短距离的最大值
+    在每只猫能跳跃距离的范围内, 如果某一个跳跃距离 x 能满足条件, 
+x - 1 也是可行的(少拿几个柱子嘛)
+ */
+
+
 #include <iostream>
 
 const size_t MAX_NUM    = 5005;
@@ -55,7 +63,7 @@ int main()
     }
 
     int start = 1, end = length;
-    int res = 0;                            /* 答案 */
+    int res = 0;
     while (start <= end) {
         int mid = (start + end) / 2;
         if (check(mid)) {                   /* 可以移走, 那就说明这个距离不是最大的, 就往右走 */
