@@ -267,8 +267,6 @@ void division(int a[], int num_a,
             memcpy(r, res, num_res * sizeof(int));  /* 将结果拷贝到余数中 */
             num_r = num_res;
 
-
-
             sd = gt(b, num_b, res, num_res);
             if (sd) {           /* 除数大于等于余数了, 这一位就可以结束了 */
                 q[num_q++] = j + 1;
