@@ -47,6 +47,7 @@
         "bit": "cpp",
         "cstring": "cpp",
         "ctime": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "iomanip": "cpp"
     }
 }
