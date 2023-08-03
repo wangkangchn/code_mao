@@ -48,6 +48,9 @@
         "cstring": "cpp",
         "ctime": "cpp",
         "map": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "chrono": "cpp",
+        "unordered_set": "cpp",
+        "ratio": "cpp"
     }
 }

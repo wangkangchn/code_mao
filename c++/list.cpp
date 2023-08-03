@@ -138,3 +138,15 @@ int main()
     show(&my_list); 
     return 0;
 }
+
+
+/* 
+#include <stdint.h>
+
+int main()
+{   
+    int64_t size = ((int64_t)1 << 10) * 2048 ;
+    char a[size] = {'\0'}; 
+    return 0;
+}
+ */
